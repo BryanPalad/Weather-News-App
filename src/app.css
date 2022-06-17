@@ -202,6 +202,12 @@
     .content .left-side img {
         border-radius: 15px;
     }
+    .content .left-side .weather-footer{
+        display: none;
+    }
+    .content .left-side .weather-center .subTitle {
+        font-size: 20px;
+    }
 }
 @media (max-width: 420px) {
     .news-description {
