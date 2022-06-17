@@ -6,30 +6,26 @@ import moment from 'moment';
 const { Text, Title } = Typography;
 
 const News = ({country}) => {
-  
   const defaultImage = newsImage;
   const [news, setNews] = useState([]);
-  console.log(news);
   const options = {
       method: 'GET',
       url: `https://bing-news-search1.p.rapidapi.com/news/search?q=Country ${country}`,
       params: {safeSearch: 'Off', textFormat: 'Raw'},
       headers: {
         'X-BingApis-SDK': 'true',
-        'X-RapidAPI-Key': '9f3c4f580emshc2def8695f26f06p16c5c4jsn6ea225972f4e',
+        'X-RapidAPI-Key': process.env.REACT_APP_NEWS_API,
         'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
       }
     };
 useEffect(() => {
   axios.request(options).then(function (response) {
       const result = (response.data.value);
-      console.log(response.data);
       setNews(result);
   }).catch(function (error) {
       console.error(error);
   });
 },[country])
-
 
   return (
     <div>
@@ -37,7 +33,7 @@ useEffect(() => {
             return <>
             <Row style={{marginBottom: '20px'}}>
             <div className='overflow-hidden'>
-            <a href={item?.url} target="_blank" rel='noreferrer'>
+            <a href={item?.url} target="_blank" rel='noreferrer' key={index}>
             <Card hoverable className='news-card'>
                 <Title level={5}>{item.name}</Title>
                 <div className='news-description'>

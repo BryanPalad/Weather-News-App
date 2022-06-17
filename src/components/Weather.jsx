@@ -41,9 +41,8 @@ const Weather = () => {
 
   useEffect(() => {
     const id = setInterval(() => setDateTime(new Date()), 1000);
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=7d40259378ea5cbd0208e0daeae843e1`).then((response) => {
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${process.env.REACT_APP_API_KEY}`).then((response) => {
         setData(response.data)
-        console.log(response.data);
         setInput('');
         setError(null);
     })
@@ -69,7 +68,7 @@ const Weather = () => {
     } else if (data.weather[0].main === "Drizzle") {
       emoji = <BsCloudDrizzle/>;
     } else if (data.weather[0].main === "Rain") {
-      emoji = `${<BsCloudRainHeavy/>}`;
+      emoji = <BsCloudRainHeavy/>;
     } else if (data.weather[0].main === "Snow") {
       emoji = <BiCloudSnow/>;
     } else {
@@ -136,7 +135,7 @@ const Weather = () => {
                 <div className='right-side-content'>
                 <div className='upper-right-description'>
                   <Title level={2}>Today</Title>
-                    <Card sx={{ minWidth: 275 }} style={{boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', borderRadius: '15px'}}>
+                    <Card sx={{ minWidth: 175 }} style={{boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', borderRadius: '15px'}}>
                     {error === null ? (<>
                       <CardContent>
                       <Row style={{justifyContent: 'center', display: 'flex', alignItems: 'center', textAlign: 'center'}}>
@@ -175,7 +174,7 @@ const Weather = () => {
                 )}
                 <div className='lower-right-description'>
                   {error === null ? (<>
-                    <Title level={2}>News Today in {data.name} {data.sys.country}</Title>
+                    <Title level={2}>News in {data.name} {data.sys.country}</Title>
                       <News country={`${data.name}`}/>
                       </>):
                     (<>
