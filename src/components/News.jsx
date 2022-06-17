@@ -3,7 +3,7 @@ import axios from 'axios'
 import newsImage from '../assets/image/defaultNewsImage.jpg';
 import {Typography, Row, Card } from 'antd';
 import moment from 'moment';
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
 const News = ({country}) => {
   const defaultImage = newsImage;
@@ -15,7 +15,7 @@ const News = ({country}) => {
       headers: {
         'X-BingApis-SDK': 'true',
         'X-RapidAPI-Key': process.env.REACT_APP_NEWS_API,
-        'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+        'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
       }
     };
 useEffect(() => {
