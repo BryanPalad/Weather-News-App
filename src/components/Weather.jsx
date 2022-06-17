@@ -48,7 +48,7 @@ const Weather = () => {
     const id = setInterval(() => setDateTime(new Date()), 1000);
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${process.env.REACT_APP_API_KEY}`
+        `${process.env.REACT_APP_API_URL}q=${search}&appid=${process.env.REACT_APP_API_KEY}`
       )
       .then((response) => {
         setData(response.data);

@@ -12,11 +12,12 @@ const News = ({ country }) => {
   const options = {
     method: "GET",
     url: `https://bing-news-search1.p.rapidapi.com/news/search?q=Country ${country}`,
-    params: { safeSearch: "Off", textFormat: "Raw" },
+    params: {sortBy: 'Date', freshness: 'Day', textFormat: 'Raw', safeSearch: 'Off'},
     headers: {
-      "X-BingApis-SDK": "true",
+      'X-BingApis-SDK': 'true',
       "X-RapidAPI-Key": process.env.REACT_APP_NEWS_API,
-      "X-RapidAPI-Host": "bing-news-search1.p.rapidapi.com",
+      'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+      
     },
   };
   useEffect(() => {
