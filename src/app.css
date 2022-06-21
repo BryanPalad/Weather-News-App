@@ -235,6 +235,12 @@
     .search-field {
         width: 260px !important;
     }
+    .content .right-side-content .upper-right-description .tabs{
+        position: absolute;
+        left: 0;
+        margin-left: 25px;
+
+     }
 }
 @media (max-width: 350px) {
     .content .left-side .weather-upper {
