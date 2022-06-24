@@ -554,7 +554,7 @@ const Weather = () => {
                               </CardContent>
                             </Card>
                           </>
-                        )}
+                        )} 
                       </div>
                     </TabPanel>
                   </Box>

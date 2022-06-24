@@ -1,40 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import newsImage from "../assets/image/defaultNewsImage.jpg";
 import { Typography, Row, Card } from "antd";
 import moment from "moment";
+import { useGetNewsQuery } from "../services/newsApi";
+import Loading from "./Loading";
 const { Title } = Typography;
 
 const News = ({ country }) => {
   const defaultImage = newsImage;
-  const [news, setNews] = useState([]);
-
-  const options = {
-    method: "GET",
-    url: `https://bing-news-search1.p.rapidapi.com/news/search?q=Country ${country}`,
-    params: {sortBy: 'Date', freshness: 'Day', textFormat: 'Raw', safeSearch: 'Off'},
-    headers: {
-      'X-BingApis-SDK': 'true',
-      "X-RapidAPI-Key": process.env.REACT_APP_NEWS_API,
-      'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
-      
-    },
-  };
-  useEffect(() => {
-    axios
-      .request(options)
-      .then(function (response) {
-        const result = response.data.value;
-        setNews(result);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  }, [country]);
+  const { data: newsData } = useGetNewsQuery({ country });
+  if (!newsData) return <Loading />;
 
   return (
     <div>
-      {news.map((item, index) => {
+      {newsData.map((item, index) => {
         return (
           <>
             <Row style={{ marginBottom: "20px" }}>
