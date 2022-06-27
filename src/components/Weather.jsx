@@ -99,7 +99,6 @@ const Weather = () => {
       )
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
         setInput("");
         setError(null);
       })
@@ -117,7 +116,6 @@ const Weather = () => {
       )
       .then((response) => {
         setCurrentData(response.data);
-        console.log(response.data);
         setInput("");
         setError(null);
       })
@@ -207,12 +205,6 @@ const Weather = () => {
 
   const tempArray = [
     {
-      number: 0,
-      temp: getTemp(0),
-      icons: getIcon(0),
-      time: getTime(0),
-    },
-    {
       number: 1,
       temp: getTemp(1),
       icons: getIcon(1),
@@ -229,6 +221,12 @@ const Weather = () => {
       temp: getTemp(3),
       icons: getIcon(3),
       time: getTime(3),
+    },
+    {
+      number: 4,
+      temp: getTemp(4),
+      icons: getIcon(4),
+      time: getTime(4),
     },
   ];
 
@@ -457,7 +455,7 @@ const Weather = () => {
                                 }}
                               >
                                 {tempArray?.map(
-                                  ({ number, temp, time, icons }) => {
+                                  (item, index) => {
                                     return (
                                       <>
                                         <Col
@@ -469,7 +467,6 @@ const Weather = () => {
                                           style={{
                                             display: "flex",
                                             flexDirection: "column",
-                                            gap: "0.5rem",
                                             padding: "20px 0px",
                                           }}
                                         >
@@ -482,12 +479,12 @@ const Weather = () => {
                                           <div className="temp_emoji">
                                             <p>
                                               {
-                                                data?.list?.[`${number}`]
+                                                data?.list?.[`${item.number}`]
                                                   ?.weather?.[0]?.main
                                               }
                                             </p>
                                             <span style={{ fontSize: "30px" }}>
-                                              {icons}
+                                              {item.icons}
                                             </span>
                                           </div>
                                           <Title
@@ -496,17 +493,18 @@ const Weather = () => {
                                             display="block"
                                             style={{
                                               textTransform: "uppercase",
-                                              fontSize: "12px", marginTop: '-2px'
+                                              fontSize: "12px",
+                                              marginTop: "-2px",
                                             }}
                                           >
                                             {
-                                              data?.list?.[`${number}`]
+                                              data?.list?.[`${item.number}`]
                                                 ?.weather?.[0]?.description
                                             }
                                           </Title>
-                                          {time}
+                                          {item.time}
                                         </Col>
-                                        {number >= 3 ? (
+                                        {item.number >= 4 ? (
                                           <></>
                                         ) : (
                                           <>
@@ -554,7 +552,7 @@ const Weather = () => {
                               </CardContent>
                             </Card>
                           </>
-                        )} 
+                        )}
                       </div>
                     </TabPanel>
                   </Box>
