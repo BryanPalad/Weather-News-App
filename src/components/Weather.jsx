@@ -539,7 +539,7 @@ const Weather = () => {
                             <Title level={2}>
                               News in {data?.city?.name} {data?.city?.country}
                             </Title>
-                            <News country={`${data?.city?.name}`} />
+                            <News country={`${data?.city?.name} ${data?.city?.country}`} />
                           </>
                         ) : (
                           <>

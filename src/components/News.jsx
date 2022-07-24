@@ -13,7 +13,7 @@ const News = ({ country }) => {
 
   return (
     <div>
-      {newsData.map((item, index) => {
+      {newsData.value.map((item, index) => {
         return (
           <>
             <Row style={{ marginBottom: "20px" }}>
